@@ -5,3 +5,9 @@ workflows:
   node-tests:
     jobs:
       - node/test
+      - heroku/deploy-via-git:
+        requires:
+          - node/test
+            filters:
+              branches:
+                only: main
