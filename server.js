@@ -4,7 +4,7 @@ var fs = require('fs')
 const { features } = require('process')
 
 app.get('/test', function(req, res){
-    res.send('hi');
+    res.send('hello victor');
 })
 
 var server = app.listen(process.env.PORT || 8080, function(){
