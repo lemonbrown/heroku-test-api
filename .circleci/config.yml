@@ -6,7 +6,7 @@ orbs:
 jobs:
   test:
     docker:
-      -image: cimg/node:15.3.0
+      - image: cimg/node:15.3.0
     steps:
       - checkout
       - run: npm run test
