@@ -4,10 +4,10 @@ orbs:
 workflows:
   heroku-deploy:
     jobs:
-      - node/test
+      - test
       - heroku/deploy-via-git:
           requires:
-            - node/test
+            - test
           filters:
             branches:
               only: main
