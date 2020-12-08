@@ -1,15 +1,20 @@
 version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
-  node: circleci/node@4.1.0
+  node: circleci/node@2.1.2
+
+jobs:
+  test:
+    docker:
+      -image: cimg/node:15.3.0
+    steps:
+      - checkout
+      - run: npm run test
 
 workflows:
-  test_my_app:
-    jobs:
-      - node/test:
-          version: 4.1.0
   heroku_deploy:
     jobs:
+      - test
       - heroku/deploy-via-git:
           filters:
             branches:
