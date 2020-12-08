@@ -19,4 +19,17 @@ jobs:
     parallelism: 1
     working_directory: ~/gondola/heroku-test-api
     steps:
+      - checkout
+      - attach_workspace:
+          at: ~/gondola/heroku-test-api
+      - restore_cache:
+          key: v1-yarn-{{ checksum "yarn.lock" }}
+      - run: yarn install
+      - save_cache:
+          key: v1-yarn-{{ checksum "yarn.lock" }}
+          paths:
+            - ./node_modules
       - run: npm run test
+      - persist_to_workspace:
+          root: .
+          paths: dist
