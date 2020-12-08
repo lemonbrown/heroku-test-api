@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
+  node: circleci/node@4.1.0
 workflows:
   heroku_deploy:
     jobs:
@@ -14,11 +15,5 @@ workflows:
 
 jobs:
   test:
-    executor:
-      name: node/default
-      tag: '13.4'
-    steps:
-      - checkout
-      - node/install-packages
-      - run:
-        command: npm run test
+    - node/text
+      version: 4.1.0
