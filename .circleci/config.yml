@@ -10,10 +10,9 @@ workflows:
           version: 4.1.0
   heroku_deploy:
     jobs:
-      - test
       - heroku/deploy-via-git:
           requires:
-            - test
+            - test_my_app
           filters:
             branches:
               only: main
