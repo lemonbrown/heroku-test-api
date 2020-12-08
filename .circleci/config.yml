@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   heroku: circleci/heroku@0.0.10
 workflows:
-  heroku-deploy:
+  heroku_deploy:
     jobs:
       - test
       - heroku/deploy-via-git:
@@ -11,3 +11,12 @@ workflows:
           filters:
             branches:
               only: main
+
+jobs:
+  test:
+    docker:
+      - image: circleci/node:15.3.0
+    parallelism: 1
+    working_directory: ~/gondola/heroku-test-api
+    steps:
+      - run: npm run test
